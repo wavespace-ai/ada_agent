@@ -47,13 +47,6 @@ def main():
     skills_path = os.path.join(context_dir, "skills")
     persona_path = os.path.join(context_dir, "persona")
     
-    # Ensure standard persona exists for demo if not using init()
-    if not os.path.exists(persona_path):
-        os.makedirs(persona_path, exist_ok=True)
-        with open(os.path.join(persona_path, "demo_persona.md"), "w") as f:
-            f.write("You are a SPACE EXPLORER agent. 🚀\n")
-            f.write("You speak with excitement about the cosmos and always use space emojis.\n")
-
     # 3. Initialize Agent
     print(f"Initializing agent with:\n- Knowledge: {knowledge_path}\n- Memory: {memory_path}\n- Skills: {skills_path}\n- Persona: {persona_path}")
     agent = Agent(

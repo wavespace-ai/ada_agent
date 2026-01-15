@@ -11,84 +11,40 @@ def init(project_path="."):
     
     print(f"Initializing ADA Agent in application folder: {application_dir}")
     
-    # 1. Create Directories
-    components = ["memory", "knowledge", "skills", "persona"]
-    for comp in components:
-        comp_path = os.path.join(context_dir, comp)
-        os.makedirs(comp_path, exist_ok=True)
-        print(f"  - Created {comp_path}")
-        
-    # 2. Add Sample Files
-    
-    # Knowledge
-    knowledge_readme = os.path.join(context_dir, "knowledge", "README.txt")
-    if not os.path.exists(knowledge_readme):
-        with open(knowledge_readme, "w") as f:
-            f.write("Add your .txt files here to be indexed by the RAG system.\n")
-            f.write("\nExample:\nThe capital of Mars is Utopia Planitia.\n")
-            
-    # Persona
-    persona_file = os.path.join(context_dir, "persona", "default.md")
-    if not os.path.exists(persona_file):
-        with open(persona_file, "w") as f:
-            f.write("You are a helpful and friendly assistant.\n")
-            f.write("You like to use emojis in your responses. 🤖\n")
-
-    # Memory (Optional initial memory)
-    memory_file = os.path.join(context_dir, "memory", "memory.json")
-    if not os.path.exists(memory_file):
-        with open(memory_file, "w") as f:
-            f.write("{}") # Empty JSON object
-            
-    # Skills
-    # Try to copy from examples/context/skills if available (local dev mode)
-    # This path is relative to ada_agent/init.py -> ../examples/context/skills
+    # 1. Template Source
     pkg_dir = os.path.dirname(os.path.abspath(__file__))
-    repo_root = os.path.dirname(pkg_dir)
-    examples_skills_dir = os.path.join(repo_root, "examples", "context", "skills")
+    templates_dir = os.path.join(pkg_dir, "templates")
     
-    target_skills_dir = os.path.join(context_dir, "skills")
+    if not os.path.exists(templates_dir):
+        print("Warning: Templates directory not found. Using minimal fallback.")
+        # Fallback logic could go here, or just fail. 
+        # For now, let's assume templates exist if installed correctly.
+
+    # 2. Iterate and Copy Components
+    components = ["memory", "knowledge", "skills", "persona"]
     
-    if os.path.exists(examples_skills_dir) and os.path.isdir(examples_skills_dir):
-        print(f"  - Copying example skills from {examples_skills_dir}...")
-        try:
-            # Iterate and copy each category/skill to avoid blowing away existing directory if any
-            for item in os.listdir(examples_skills_dir):
-                s = os.path.join(examples_skills_dir, item)
-                d = os.path.join(target_skills_dir, item)
-                if os.path.isdir(s):
-                    if os.path.exists(d):
-                        print(f"    - Skipping {item} (already exists)")
-                    else:
-                        shutil.copytree(s, d)
-                        print(f"    - Copied {item}")
-        except Exception as e:
-            print(f"    - Error copying skills: {e}")
-            
-    # Always ensure at least hello_world exists if nothing else was copied
-    # (Or just add it anyway as a demo of how to write one)
-    skill_dir = os.path.join(target_skills_dir, "hello_world")
-    if not os.path.exists(skill_dir):
-        os.makedirs(skill_dir, exist_ok=True)
+    for comp in components:
+        target_path = os.path.join(context_dir, comp)
+        source_path = os.path.join(templates_dir, comp)
         
-        skill_md = os.path.join(skill_dir, "SKILL.md")
-        with open(skill_md, "w") as f:
-            f.write("""---
-name: hello_world
-description: A simple skill to say hello.
----
+        if not os.path.exists(target_path):
+            if os.path.exists(source_path) and os.path.isdir(source_path):
+                shutil.copytree(source_path, target_path)
+                print(f"  - Created {target_path} (from template)")
+            else:
+                os.makedirs(target_path, exist_ok=True)
+                print(f"  - Created {target_path} (empty)")
+                
+                # Minimal Fallbacks for empty dirs
+                if comp == "memory" and not os.path.exists(os.path.join(target_path, "memory.json")):
+                    with open(os.path.join(target_path, "memory.json"), "w") as f:
+                        f.write("{}")
 
-# Hello World
-
-Instructions:
-1. Run the python script `hello.py` to say hello to the user.
-""")
-
-        skill_py = os.path.join(skill_dir, "hello.py")
-        with open(skill_py, "w") as f:
-            f.write("print('Hello from your custom skill!')\\n")
-    else:
-         print("  - hello_world skill already exists")
+                if comp == "knowledge" and not os.listdir(target_path):
+                     with open(os.path.join(target_path, "README.txt"), "w") as f:
+                        f.write("Add your knowledge base .txt files here.\n")
+        else:
+            print(f"  - {target_path} already exists. Skipping.")
             
     # Env File
     env_file = os.path.join(application_dir, ".env")

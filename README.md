@@ -95,13 +95,19 @@ provider = OpenAICompatibleProvider(
     model_name="deepseek-chat"
 )
 
-# 2. Define Paths
+# 2. Define Paths and Initialize if Needed
 base_dir = os.path.dirname(os.path.abspath(__file__))
-# Assumes you have these folders
-knowledge_path = os.path.join(base_dir, "context", "knowledge")
-memory_path = os.path.join(base_dir, "context", "memory", "memory.json")
-skills_path = os.path.join(base_dir, "context", "skills")
-persona_path = os.path.join(base_dir, "context", "persona")
+context_dir = os.path.join(base_dir, "context")
+
+if not os.path.exists(context_dir):
+    from ada_agent import init
+    init(base_dir)
+
+# Assumes you have these folders (created by init check above)
+knowledge_path = os.path.join(context_dir, "knowledge")
+memory_path = os.path.join(context_dir, "memory", "memory.json")
+skills_path = os.path.join(context_dir, "skills")
+persona_path = os.path.join(context_dir, "persona")
 
 # 3. Initialize Agent with Custom Paths
 agent = Agent(
