@@ -57,9 +57,6 @@ The `examples/` directory contains demo scripts for different LLM providers:
 
 ### Running a Demo
 
-1.  Make sure you have set the appropriate API key in your `.env` file (created automatically by the agent or manually).
-2.  Run the desired script:
-
 ```bash
 # Example for DeepSeek
 python examples/demo_deepseek.py
