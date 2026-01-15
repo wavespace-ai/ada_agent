@@ -158,6 +158,11 @@ class SkillRegistry:
                     with open(md_path, 'r', encoding='utf-8') as f:
                         content = f.read()
                     _, instructions = parse_frontmatter(content)
+                    
+                    # Interpolate {skill_path} to make paths absolute
+                    if "{skill_path}" in instructions:
+                        instructions = instructions.replace("{skill_path}", meta.path)
+                        
                     return Skill(metadata=meta, instructions=instructions)
                 except Exception as e:
                     print(f"Error loading skill {name}: {e}")

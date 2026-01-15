@@ -8,4 +8,4 @@ description: Checks if a number is prime.
 To check if a number is prime, use `prime.py`.
 
 ### Usage
-`python skills/math/primer/prime.py <number>`
+`python {skill_path}/prime.py <number>`

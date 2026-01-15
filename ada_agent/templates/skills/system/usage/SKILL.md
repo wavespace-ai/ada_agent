@@ -8,4 +8,4 @@ description: Checks disk usage.
 Check disk usage.
 
 ### Usage
-`python skills/system/usage/disk.py`
+`python {skill_path}/disk.py`

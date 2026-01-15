@@ -13,14 +13,14 @@ The script accepts an arithmetic expression as a string argument.
 Run the following command:
 ### Usage
 Run the following command:
-`python skills/math/calculator/calc.py "expression"`
+`python {skill_path}/calc.py "expression"`
 
 For help:
-`python skills/math/calculator/calc.py --help`
+`python {skill_path}/calc.py --help`
 
 ## Examples
 User: "What is 2 + 2?"
-Command: `python skills/math/calculator/calc.py "2 + 2"`
+Command: `python {skill_path}/calc.py "2 + 2"`
 
 User: "Calculate 15 * 4"
-Command: `python skills/math/calculator/calc.py "15 * 4"`
+Command: `python {skill_path}/calc.py "15 * 4"`

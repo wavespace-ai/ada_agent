@@ -8,4 +8,4 @@ description: Generates a random number.
 Generate a random number between A and B.
 
 ### Usage
-`python skills/system/random/rand.py <min> <max>`
+`python {skill_path}/rand.py <min> <max>`

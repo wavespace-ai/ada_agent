@@ -8,4 +8,4 @@ description: Converts text to uppercase.
 Convert text to uppercase using `upper.py`.
 
 ### Usage
-`python skills/text/uppercase/upper.py "text"`
+`python {skill_path}/upper.py "text"`

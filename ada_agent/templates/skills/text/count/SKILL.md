@@ -8,4 +8,4 @@ description: Counts words in a string.
 Count words using `count.py`.
 
 ### Usage
-`python skills/text/count/count.py "text"`
+`python {skill_path}/count.py "text"`

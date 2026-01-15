@@ -8,4 +8,4 @@ description: Gets current system time.
 Get current time.
 
 ### Usage
-`python skills/system/time/time_check.py`
+`python {skill_path}/time_check.py`

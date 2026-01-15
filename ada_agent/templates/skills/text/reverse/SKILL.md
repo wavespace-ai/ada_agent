@@ -8,4 +8,4 @@ description: Reverses a string.
 Reverse a string using `rev.py`.
 
 ### Usage
-`python skills/text/reverse/rev.py "string to reverse"`
+`python {skill_path}/rev.py "string to reverse"`
