@@ -1,0 +1,2 @@
+recursive-include ada_agent/skills *
+recursive-include ada_agent/core/memory *
