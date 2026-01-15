@@ -1,6 +1,6 @@
 <div align="center">
   <img src="assets/logo.png" alt="ADA Agent Logo" width="300">
-  <h1>ADA: Python LLM Agent with Customizable Skills & Memory</h1>
+  <h1>ADA: Python LLM Agent with Customizable Skills, Memory, Knowledge RAG & Persona</h1>
 </div>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -179,6 +179,8 @@ graph TD
     Agent --> LLM[LLM Adapter]
     Agent --> Memory[Memory Manager]
     Agent --> Skills[Skill Registry]
+    Agent --> Knowledge[Knowledge RAG]
+    Agent --> Persona[Persona]
     
     subgraph Providers
         LLM --> DeepSeek
