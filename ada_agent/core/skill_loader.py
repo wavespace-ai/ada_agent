@@ -136,7 +136,7 @@ class SkillRegistry:
                                 skills.append(SkillMetadata(
                                     name=metadata.get('name', item),
                                     description=metadata.get('description', 'No description.'),
-                                    path=skill_path,
+                                    path=os.path.abspath(skill_path),
                                     category=cat_name
                                 ))
                             except Exception:
