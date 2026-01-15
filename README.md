@@ -50,6 +50,7 @@ The `examples/` directory contains demo scripts for different LLM providers:
 *   **OpenAI**: `examples/demo_openai.py`
 *   **Google Gemini**: `examples/demo_gemini.py`
 *   **Grok (xAI)**: `examples/demo_grok.py`
+*   **Multi-turn Conversation**: `examples/demo_multi_turn.py`
 
 ### Running a Demo
 

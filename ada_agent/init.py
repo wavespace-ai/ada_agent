@@ -46,22 +46,4 @@ def init(project_path="."):
         else:
             print(f"  - {target_path} already exists. Skipping.")
             
-    # Env File
-    env_file = os.path.join(application_dir, ".env")
-    if not os.path.exists(env_file):
-        with open(env_file, "w") as f:
-            f.write("# ADA Agent Configuration\n")
-            f.write("# -----------------------\n\n")
-            f.write("# LLM Provider Configuration\n")
-            f.write("# Uncomment and fill in the key for your chosen provider\n\n")
-            f.write("# OpenAI\n")
-            f.write("# OPENAI_API_KEY=sk-your-openai-key-here\n\n")
-            f.write("# DeepSeek\n")
-            f.write("DEEPSEEK_API_KEY=sk-your-deepseek-key-here\n\n")
-            f.write("# Anthropic (Claude)\n")
-            f.write("# ANTHROPIC_API_KEY=sk-your-anthropic-key-here\n\n")
-            f.write("# Google Gemini\n")
-            f.write("# GEMINI_API_KEY=your-gemini-key-here\n")
-        print(f"  - Created {env_file} (Please edit this file to add your API keys)")
-
     print("\nInitialization complete! You can now start your agent with this context.")
